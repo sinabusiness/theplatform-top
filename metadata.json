@@ -1,0 +1,8 @@
+{
+  "name": "theplatform.top",
+  "description": "A polished social platform inspired by Instagram, featuring real Google Maps integration, dynamic photo grids, immersive stories, live chats, and interactive feedback.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
