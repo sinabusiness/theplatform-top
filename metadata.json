@@ -1,6 +1,6 @@
 {
   "name": "theplatform.top",
-  "description": "A polished social platform inspired by Instagram, featuring real Google Maps integration, dynamic photo grids, immersive stories, live chats, and interactive feedback.",
+  "description": "Tiered seller-verification platform (Red/Green/Blue/Black badges) with traceable share-chain for provenance tracking, OSM-powered explore map, encrypted direct messaging, and sovereign wallet.",
   "requestFramePermissions": [
     "geolocation"
   ],

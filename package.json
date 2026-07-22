@@ -2,6 +2,7 @@
   "name": "theplatform-top",
   "private": true,
   "version": "0.0.0",
+  "description": "Tiered seller-verification platform (Red/Green/Blue/Black badges) with traceable share-chain, OSM-powered explore map, encrypted DMs, and sovereign wallet.",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",

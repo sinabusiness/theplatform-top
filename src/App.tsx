@@ -446,9 +446,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="text-[8.5px] text-neutral-600 font-mono uppercase tracking-wider">
-            © 2026 INSTAGRID EXPERIMENT
-          </div>
+            <div className="text-[8.5px] text-neutral-600 font-mono uppercase tracking-wider">
+              © 2026 THEPLATFORM.TOP
+            </div>
         </div>
       </aside>
 
