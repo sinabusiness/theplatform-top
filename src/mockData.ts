@@ -1,12 +1,7 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { CreatorProfile, Post, Story, IndigenousProject } from './types';
 
 export const INITIAL_CREATORS: CreatorProfile[] = [
-  // Vintage Personnel (Black Verification Badge)
+  // ─── BLACK BADGE — Legacy & Late Figures (Vintage) ───
   {
     id: 'l_beethoven',
     name: 'Ludwig van Beethoven',
@@ -46,8 +41,34 @@ export const INITIAL_CREATORS: CreatorProfile[] = [
     priorityLanguage: 'en',
     bio: 'Playwright, poet, and actor, widely regarded as the greatest writer in the English language.'
   },
+  {
+    id: 'f_kahlo',
+    name: 'Frida Kahlo',
+    username: 'frida_kahlo_art',
+    avatar: 'https://images.unsplash.com/photo-1596650369555-382e0c4eb0aa?auto=format&fit=crop&q=80&w=200',
+    tier: 'vintage',
+    category: 'vintage_personnel',
+    followers: 8200000,
+    country: 'Mexico',
+    city: 'Coyoacán',
+    priorityLanguage: 'es',
+    bio: 'Mexican painter known for her self-portraits, surrealism, and exploration of identity, pain, and culture.'
+  },
+  {
+    id: 'n_mandela',
+    name: 'Nelson Mandela',
+    username: 'mandela_legacy',
+    avatar: 'https://images.unsplash.com/photo-1594756202469-9ff9799b2e4e?auto=format&fit=crop&q=80&w=200',
+    tier: 'vintage',
+    category: 'vintage_personnel',
+    followers: 15200000,
+    country: 'South Africa',
+    city: 'Johannesburg',
+    priorityLanguage: 'en',
+    bio: 'Anti-apartheid revolutionary, political leader, and philanthropist. First Black head of state of South Africa.'
+  },
 
-  // International Brands & Celebs (Blue Badge)
+  // ─── BLUE BADGE — International Standard Verification ───
   {
     id: 'blue_nike',
     name: 'Nike Global',
@@ -72,10 +93,49 @@ export const INITIAL_CREATORS: CreatorProfile[] = [
     country: 'Global',
     city: 'Los Angeles',
     priorityLanguage: 'en',
-    bio: 'Eternal Sunshine out now! ☀️🎶'
+    bio: 'Eternal Sunshine out now!'
+  },
+  {
+    id: 'blue_tesla',
+    name: 'Tesla Motors',
+    username: 'tesla_global',
+    avatar: 'https://images.unsplash.com/photo-1617791160505-6f00504e3519?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'brand',
+    followers: 52000000,
+    country: 'Global',
+    city: 'Austin',
+    priorityLanguage: 'en',
+    bio: 'Accelerating the world\'s transition to sustainable energy through electric vehicles and clean energy products.'
+  },
+  {
+    id: 'blue_chanel',
+    name: 'Chanel',
+    username: 'chanel_official',
+    avatar: 'https://images.unsplash.com/photo-1606760227096-7a1c1f9a91a4?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'brand',
+    followers: 48000000,
+    country: 'France',
+    city: 'Paris',
+    priorityLanguage: 'fr',
+    bio: 'Elegance is not the prerogative of those who have just escaped from adolescence, but of those who have already taken possession of their future.'
+  },
+  {
+    id: 'blue_messi',
+    name: 'Lionel Messi',
+    username: 'leomessi',
+    avatar: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'celebrity',
+    followers: 482000000,
+    country: 'Argentina',
+    city: 'Buenos Aires',
+    priorityLanguage: 'es',
+    bio: 'Professional footballer. Eight-time Ballon d\'Or winner. Playing for Inter Miami and Argentina.'
   },
 
-  // National Tiers (Green Badge)
+  // ─── GREEN BADGE — Each Country's National Verified Figures ───
   {
     id: 'green_nike_usa',
     name: 'Nike USA Stores',
@@ -112,11 +172,76 @@ export const INITIAL_CREATORS: CreatorProfile[] = [
     followers: 2100000,
     country: 'Italy',
     city: 'Rome',
-    priorityLanguage: 'fr', // Priority display language can differ or be switched!
+    priorityLanguage: 'fr',
     bio: 'Ambasciatore della cucina italiana nel mondo. Authenticity on your plate.'
   },
+  {
+    id: 'green_iran_poet',
+    name: 'Shirin Nava',
+    username: 'shirin_nava_poet',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'public_figure',
+    followers: 1850000,
+    country: 'Iran',
+    city: 'Shiraz',
+    priorityLanguage: 'fa',
+    bio: 'Iranian poet and literary scholar. Keeping the flame of Persian poetry alive in the modern age.'
+  },
+  {
+    id: 'green_japan_sumo',
+    name: 'Takayasu Akira',
+    username: 'takayasu_sumo',
+    avatar: 'https://images.unsplash.com/photo-1578632292335-df3abbb0d586?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'celebrity',
+    followers: 920000,
+    country: 'Japan',
+    city: 'Tokyo',
+    priorityLanguage: 'zh',
+    bio: 'Makuuchi division sumo wrestler. Former ōzeki. Proud representative of Japanese sumo tradition.'
+  },
+  {
+    id: 'green_brazil_football',
+    name: 'Ronaldo Nazário',
+    username: 'ronaldo_brazil',
+    avatar: 'https://images.unsplash.com/photo-1602652838235-5094c1f6f4f6?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'celebrity',
+    followers: 35000000,
+    country: 'Brazil',
+    city: 'Rio de Janeiro',
+    priorityLanguage: 'es',
+    bio: 'Two-time World Cup winner. One of the greatest footballers in history. FIFA World Player of the Year three times.'
+  },
+  {
+    id: 'green_france_chef',
+    name: 'Marie Dubois',
+    username: 'marie_dubois_patisse',
+    avatar: 'https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'celebrity',
+    followers: 1450000,
+    country: 'France',
+    city: 'Lyon',
+    priorityLanguage: 'fr',
+    bio: 'French pâtissière and chocolatier. Meilleur Ouvrier de France. Crafting artisanal desserts in Lyon.'
+  },
+  {
+    id: 'green_korea_kpop',
+    name: 'Park Jimin',
+    username: 'jimin_bts',
+    avatar: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'artist',
+    followers: 51000000,
+    country: 'South Korea',
+    city: 'Seoul',
+    priorityLanguage: 'zh',
+    bio: 'Singer, songwriter, and member of BTS. Representing Korean pop culture worldwide.'
+  },
 
-  // Local Brand Branches & Local Individuals (Red Badge)
+  // ─── RED BADGE — Local Verified Businesses & Figures ───
   {
     id: 'red_nike_sf',
     name: 'Nike SF - Union Square',
@@ -155,11 +280,63 @@ export const INITIAL_CREATORS: CreatorProfile[] = [
     city: 'Denver',
     priorityLanguage: 'en',
     bio: 'High altitude yeast brews & mountain micro-distilleries. Rocky Mountain local pride.'
-  }
+  },
+  {
+    id: 'red_tehran_cafe',
+    name: 'Café Khatoon',
+    username: 'cafe_khatoon_tehran',
+    avatar: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'business',
+    followers: 12400,
+    country: 'Iran',
+    city: 'Tehran',
+    priorityLanguage: 'fa',
+    bio: 'Cozy traditional cafe in downtown Tehran. Serving Persian tea, espresso, and homemade pastries since 2018.'
+  },
+  {
+    id: 'red_tokyo_ramen',
+    name: 'Ramen Sugoi',
+    username: 'ramen_sugoi_shinjuku',
+    avatar: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'business',
+    followers: 28900,
+    country: 'Japan',
+    city: 'Tokyo',
+    priorityLanguage: 'zh',
+    bio: 'Family-run tonkotsu ramen shop in Shinjuku. 15-hour broth, handmade noodles, open till 4am.'
+  },
+  {
+    id: 'red_rome_pizzeria',
+    name: 'Pizza al Taglio Roma',
+    username: 'pizza_taglio_trastevere',
+    avatar: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'business',
+    followers: 18200,
+    country: 'Italy',
+    city: 'Rome',
+    priorityLanguage: 'it',
+    bio: 'Authentic Roman pizza al taglio in Trastevere. Family recipe since 1965. Carta di Roma DOP ingredients only.'
+  },
+  {
+    id: 'red_denver_artist',
+    name: 'Maya Hart',
+    username: 'maya_hart_denver',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'individual',
+    followers: 8900,
+    country: 'United States',
+    city: 'Denver',
+    priorityLanguage: 'en',
+    bio: 'Denver-based muralist and mixed-media artist. Transforming RiNo alleyways with color.'
+  },
 ];
 
 export const INITIAL_POSTS: Post[] = [
-  // Vintage Post
+  // ─── BLACK BADGE POSTS (Legacy) ───
   {
     id: 'post_1',
     creatorId: 'l_beethoven',
@@ -200,8 +377,68 @@ export const INITIAL_POSTS: Post[] = [
     shareCodePrefix: 'VNT_AE_RELATIVITY',
     shareChain: ['albert_einstein', 'openheimer_colleague', 'feynman_student', 'physics_major_33']
   },
+  {
+    id: 'post_shakespeare',
+    creatorId: 'w_shakespeare',
+    creatorName: 'William Shakespeare',
+    creatorUsername: 'shakespeare_bard',
+    creatorAvatar: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=200',
+    tier: 'vintage',
+    category: 'vintage_personnel',
+    caption: 'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances, and one man in his time plays many parts.',
+    imageUrl: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=600',
+    likes: 654000,
+    views: 2100000,
+    timestamp: '2026-06-14T16:30:00Z',
+    locationName: 'London, United Kingdom',
+    lat: 51.5074,
+    lng: -0.1278,
+    language: 'en',
+    shareCodePrefix: 'VNT_SHA_GLOBE',
+    shareChain: ['shakespeare_bard', 'globe_theatre', 'ben_jonson', 'contemporary_critic']
+  },
+  {
+    id: 'post_kahlo',
+    creatorId: 'f_kahlo',
+    creatorName: 'Frida Kahlo',
+    creatorUsername: 'frida_kahlo_art',
+    creatorAvatar: 'https://images.unsplash.com/photo-1596650369555-382e0c4eb0aa?auto=format&fit=crop&q=80&w=200',
+    tier: 'vintage',
+    category: 'vintage_personnel',
+    caption: 'I paint self-portraits because I am so often alone, because I am the person I know best. I paint my own reality. The only thing I know is that I paint because I need to.',
+    imageUrl: 'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?auto=format&fit=crop&q=80&w=600',
+    likes: 523000,
+    views: 1800000,
+    timestamp: '2026-06-13T10:00:00Z',
+    locationName: 'Coyoacán, Mexico',
+    lat: 19.3499,
+    lng: -99.1609,
+    language: 'es',
+    shareCodePrefix: 'VNT_FK_SELFPORT',
+    shareChain: ['frida_kahlo_art', 'diego_rivera', 'surrealist_gallery', 'art_student_mx']
+  },
+  {
+    id: 'post_mandela',
+    creatorId: 'n_mandela',
+    creatorName: 'Nelson Mandela',
+    creatorUsername: 'mandela_legacy',
+    creatorAvatar: 'https://images.unsplash.com/photo-1594756202469-9ff9799b2e4e?auto=format&fit=crop&q=80&w=200',
+    tier: 'vintage',
+    category: 'vintage_personnel',
+    caption: 'What counts in life is not the mere fact that we have lived. It is what difference we have made to the lives of others that will determine the significance of the life we lead.',
+    imageUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=600',
+    likes: 1200000,
+    views: 4500000,
+    timestamp: '2026-06-12T08:00:00Z',
+    locationName: 'Johannesburg, South Africa',
+    lat: -26.2041,
+    lng: 28.0473,
+    language: 'en',
+    shareCodePrefix: 'VNT_NM_FREEDOM',
+    shareChain: ['mandela_legacy', 'd_tambo', 'truth_commission', 'global_human_rights']
+  },
 
-  // International Post (Blue)
+  // ─── BLUE BADGE POSTS (International) ───
   {
     id: 'post_2',
     creatorId: 'blue_nike',
@@ -222,8 +459,88 @@ export const INITIAL_POSTS: Post[] = [
     shareCodePrefix: 'INT_NKE_RUN',
     shareChain: ['nike', 'marathon_john', 'sara_runs_fast', 'fit_community_hub', 'local_sf_runner']
   },
+  {
+    id: 'post_aria',
+    creatorId: 'blue_popstar',
+    creatorName: 'Aria Grande',
+    creatorUsername: 'aria_g',
+    creatorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'artist',
+    caption: 'New single "Ethereal" out now. Recorded this one in a tiny cabin in the Icelandic highlands with nothing but a piano and the northern lights. Sometimes less is more.',
+    imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80&w=600',
+    likes: 3400000,
+    views: 12800000,
+    timestamp: '2026-06-17T18:00:00Z',
+    locationName: 'Reykjavik, Iceland',
+    lat: 64.1466,
+    lng: -21.9426,
+    language: 'en',
+    shareCodePrefix: 'INT_ARI_ETHER',
+    shareChain: ['aria_g', 'producer_max', 'iceland_studio', 'global_fan_club']
+  },
+  {
+    id: 'post_tesla',
+    creatorId: 'blue_tesla',
+    creatorName: 'Tesla Motors',
+    creatorUsername: 'tesla_global',
+    creatorAvatar: 'https://images.unsplash.com/photo-1617791160505-6f00504e3519?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'brand',
+    caption: 'Cybertruck production line is running at full capacity. Stainless steel exoskeleton, armored glass, and 500 miles of range. The future of utility is here.',
+    imageUrl: 'https://images.unsplash.com/photo-1619767886558-efdc7b9af1f3?auto=format&fit=crop&q=80&w=600',
+    likes: 2800000,
+    views: 9500000,
+    timestamp: '2026-06-16T14:00:00Z',
+    locationName: 'Austin, Texas',
+    lat: 30.2672,
+    lng: -97.7431,
+    language: 'en',
+    shareCodePrefix: 'INT_TSLA_CYBER',
+    shareChain: ['tesla_global', 'elon_m', 'ev_enthusiast', 'giga_press']
+  },
+  {
+    id: 'post_chanel',
+    creatorId: 'blue_chanel',
+    creatorName: 'Chanel',
+    creatorUsername: 'chanel_official',
+    creatorAvatar: 'https://images.unsplash.com/photo-1606760227096-7a1c1f9a91a4?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'brand',
+    caption: 'Introducing the new N°5 L\'EAU. A modern interpretation of the classic fragrance. Fresh, luminous, and utterly feminine. Crafted in Grasse, France.',
+    imageUrl: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=600',
+    likes: 1560000,
+    views: 5200000,
+    timestamp: '2026-06-15T11:00:00Z',
+    locationName: 'Paris, France',
+    lat: 48.8566,
+    lng: 2.3522,
+    language: 'fr',
+    shareCodePrefix: 'INT_CHANEL_N5',
+    shareChain: ['chanel_official', 'coco_legacy', 'grasse_perfumer', 'fashion_editor']
+  },
+  {
+    id: 'post_messi',
+    creatorId: 'blue_messi',
+    creatorName: 'Lionel Messi',
+    creatorUsername: 'leomessi',
+    creatorAvatar: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&q=80&w=200',
+    tier: 'international',
+    category: 'celebrity',
+    caption: 'Another chapter, another jersey. Grateful for the love in Miami. The journey continues.',
+    imageUrl: 'https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&q=80&w=600',
+    likes: 5100000,
+    views: 18500000,
+    timestamp: '2026-06-14T20:00:00Z',
+    locationName: 'Miami, Florida',
+    lat: 25.7617,
+    lng: -80.1918,
+    language: 'es',
+    shareCodePrefix: 'INT_MESSI_10',
+    shareChain: ['leomessi', 'inter_miami', 'argentina_fans', 'global_football']
+  },
 
-  // National Post (Green)
+  // ─── GREEN BADGE POSTS (National) ───
   {
     id: 'post_3',
     creatorId: 'green_aerogym',
@@ -244,8 +561,108 @@ export const INITIAL_POSTS: Post[] = [
     shareCodePrefix: 'NAT_AER_USA',
     shareChain: ['aerogym_national', 'gym_rat_mark', 'denver_coach', 'fit_blogger_colorado']
   },
+  {
+    id: 'post_italian_chef',
+    creatorId: 'green_chef_italy',
+    creatorName: 'Chef Antonio Rossi',
+    creatorUsername: 'antonio_rossi_chef',
+    creatorAvatar: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'celebrity',
+    caption: 'Carbonara autentica: guanciale, pecorino romano, tuorli d\'uovo, pepe nero. Niente panna. Mai. La tradizione italiana si rispetta.',
+    imageUrl: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&q=80&w=600',
+    likes: 48500,
+    views: 210000,
+    timestamp: '2026-06-16T19:30:00Z',
+    locationName: 'Rome, Italy',
+    lat: 41.9028,
+    lng: 12.4964,
+    language: 'it',
+    shareCodePrefix: 'NAT_ITA_CARBO',
+    shareChain: ['antonio_rossi_chef', 'gambero_rosso', 'food_writer_marco', 'home_cook_roma']
+  },
+  {
+    id: 'post_iran_poet',
+    creatorId: 'green_iran_poet',
+    creatorName: 'Shirin Nava',
+    creatorUsername: 'shirin_nava_poet',
+    creatorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'public_figure',
+    caption: 'از دل تنهایی، کلماتم را می‌بافم. شعر فارسی نه فقط یک هنر، که نفس یک ملت است. From the heart of solitude, I weave my words. Persian poetry is not just an art — it is the breath of a nation.',
+    imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=600',
+    likes: 82300,
+    views: 345000,
+    timestamp: '2026-06-15T06:00:00Z',
+    locationName: 'Shiraz, Iran',
+    lat: 29.5926,
+    lng: 52.5836,
+    language: 'fa',
+    shareCodePrefix: 'NAT_IRN_POEM',
+    shareChain: ['shirin_nava_poet', 'tehran_literature', 'persian_culture', 'poetry_lover']
+  },
+  {
+    id: 'post_japan_sumo',
+    creatorId: 'green_japan_sumo',
+    creatorName: 'Takayasu Akira',
+    creatorUsername: 'takayasu_sumo',
+    creatorAvatar: 'https://images.unsplash.com/photo-1578632292335-df3abbb0d586?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'celebrity',
+    caption: '土俵に上がるたびに、日本の伝統を背負っていることを感じます。今日も全身全霊で闘います。Every time I step onto the dohyo, I feel the weight of Japanese tradition. Today I fight with all my soul.',
+    imageUrl: 'https://images.unsplash.com/photo-1544033527-b192daee1f5b?auto=format&fit=crop&q=80&w=600',
+    likes: 61500,
+    views: 280000,
+    timestamp: '2026-06-14T05:00:00Z',
+    locationName: 'Tokyo, Japan',
+    lat: 35.6762,
+    lng: 139.6503,
+    language: 'zh',
+    shareCodePrefix: 'NAT_JPN_SUMO',
+    shareChain: ['takayasu_sumo', 'sumo_kyokai', 'japan_sports', 'sumo_fan_osaka']
+  },
+  {
+    id: 'post_france_patisse',
+    creatorId: 'green_france_chef',
+    creatorName: 'Marie Dubois',
+    creatorUsername: 'marie_dubois_patisse',
+    creatorAvatar: 'https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'celebrity',
+    caption: 'Croissant feuilleté à la main — 72 heures de fermentation lente pour une texture parfaite. Le beurre AOP Charentes-Poitou fait toute la différence.',
+    imageUrl: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=600',
+    likes: 38900,
+    views: 156000,
+    timestamp: '2026-06-13T07:30:00Z',
+    locationName: 'Lyon, France',
+    lat: 45.7640,
+    lng: 4.8357,
+    language: 'fr',
+    shareCodePrefix: 'NAT_FRA_CROISS',
+    shareChain: ['marie_dubois_patisse', 'lyon_gourmet', 'french_pastry', 'paris_bakery_fan']
+  },
+  {
+    id: 'post_korea_bts',
+    creatorId: 'green_korea_kpop',
+    creatorName: 'Park Jimin',
+    creatorUsername: 'jimin_bts',
+    creatorAvatar: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=200',
+    tier: 'national',
+    category: 'artist',
+    caption: '무대 위에서 빛나는 순간, 우리 아미와 함께라서 가능한 일입니다. 감사합니다. The moment on stage shines because we share it with ARMY. Thank you.',
+    imageUrl: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=600',
+    likes: 4200000,
+    views: 15200000,
+    timestamp: '2026-06-12T22:00:00Z',
+    locationName: 'Seoul, South Korea',
+    lat: 37.5665,
+    lng: 126.9780,
+    language: 'zh',
+    shareCodePrefix: 'NAT_KOR_BTS',
+    shareChain: ['jimin_bts', 'bts_official', 'seoul_stage', 'army_global']
+  },
 
-  // Local Posts (Red)
+  // ─── RED BADGE POSTS (Local) ───
   {
     id: 'post_4',
     creatorId: 'red_golden_baker',
@@ -289,7 +706,87 @@ export const INITIAL_POSTS: Post[] = [
     language: 'en',
     shareCodePrefix: 'LOC_DEN_BREW',
     shareChain: ['altitude_hops', 'skier_shred_99', 'larimer_resident']
-  }
+  },
+  {
+    id: 'post_tehran_cafe',
+    creatorId: 'red_tehran_cafe',
+    creatorName: 'Café Khatoon',
+    creatorUsername: 'cafe_khatoon_tehran',
+    creatorAvatar: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'business',
+    caption: 'صبح بخیر تهران! امروز تازه‌ترین شیرینی‌های خانگی‌مون آماده‌ست. چای صبحانه با عطر بهارنارنج، کنار باغچه حیاط‌مون منتظرتونیم. Good morning Tehran! Fresh homemade pastries ready. Morning tea with bitter orange blossom, serving in our courtyard garden.',
+    imageUrl: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&q=80&w=600',
+    likes: 628,
+    views: 3100,
+    timestamp: '2026-06-17T05:30:00Z',
+    locationName: 'Tehran, Iran',
+    lat: 35.6892,
+    lng: 51.3890,
+    language: 'fa',
+    shareCodePrefix: 'LOC_IRN_CAFE',
+    shareChain: ['cafe_khatoon_tehran', 'tehran_foodie', 'persian_cafe_lover']
+  },
+  {
+    id: 'post_tokyo_ramen',
+    creatorId: 'red_tokyo_ramen',
+    creatorName: 'Ramen Sugoi',
+    creatorUsername: 'ramen_sugoi_shinjuku',
+    creatorAvatar: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'business',
+    caption: '今日のスープは15時間炊き出し！濃厚とんこつ、味玉付き。新宿思い出横丁で営業中。Today\'s broth: 15-hour simmer! Rich tonkotsu with seasoned egg. Open now in Omoide Yokocho, Shinjuku.',
+    imageUrl: 'https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&q=80&w=600',
+    likes: 1240,
+    views: 5800,
+    timestamp: '2026-06-16T12:00:00Z',
+    locationName: 'Shinjuku, Tokyo',
+    lat: 35.6940,
+    lng: 139.7000,
+    language: 'zh',
+    shareCodePrefix: 'LOC_TKY_RAMEN',
+    shareChain: ['ramen_sugoi_shinjuku', 'shinjuku_foodie', 'japan_ramen_tour']
+  },
+  {
+    id: 'post_rome_pizza',
+    creatorId: 'red_rome_pizzeria',
+    creatorName: 'Pizza al Taglio Roma',
+    creatorUsername: 'pizza_taglio_trastevere',
+    creatorAvatar: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'business',
+    caption: 'Pizza bianca con mortadella e pistacchi — disponibile oggi a pranzo. Impasto 48 ore di lievitazione. Venite a trovarci a Trastevere!',
+    imageUrl: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=600',
+    likes: 945,
+    views: 4200,
+    timestamp: '2026-06-15T11:00:00Z',
+    locationName: 'Trastevere, Rome',
+    lat: 41.8867,
+    lng: 12.4695,
+    language: 'it',
+    shareCodePrefix: 'LOC_ROM_PIZZA',
+    shareChain: ['pizza_taglio_trastevere', 'roma_gourmet', 'trastevere_local']
+  },
+  {
+    id: 'post_denver_mural',
+    creatorId: 'red_denver_artist',
+    creatorName: 'Maya Hart',
+    creatorUsername: 'maya_hart_denver',
+    creatorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200',
+    tier: 'local',
+    category: 'individual',
+    caption: 'Finished the RiNo mural today! 40 feet of Colorado wildflowers in bloom. Come see it at 29th & Larimer. The alley is open to everyone.',
+    imageUrl: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&q=80&w=600',
+    likes: 2150,
+    views: 8900,
+    timestamp: '2026-06-14T15:00:00Z',
+    locationName: 'Denver, Colorado',
+    lat: 39.7590,
+    lng: -104.9850,
+    language: 'en',
+    shareCodePrefix: 'LOC_DEN_ART',
+    shareChain: ['maya_hart_denver', 'rino_art_district', 'denver_creative']
+  },
 ];
 
 export const INITIAL_STORIES: Story[] = [
@@ -300,7 +797,7 @@ export const INITIAL_STORIES: Story[] = [
     creatorUsername: 'aria_g',
     creatorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
     imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400',
-    text: 'Backstage warmups before soundcheck 🫶🎤✨',
+    text: 'Backstage warmups before soundcheck',
     tier: 'international',
     views: 2450000,
     viewers: ['justin_b', 'selena_fan', 'chicago_mark', 'investor_guest_user']
@@ -324,11 +821,35 @@ export const INITIAL_STORIES: Story[] = [
     creatorUsername: 'nike',
     creatorAvatar: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=200',
     imageUrl: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80&w=400',
-    text: 'No alarms. Just commitment. 🧗‍♂️',
+    text: 'No alarms. Just commitment.',
     tier: 'international',
     views: 1100000,
     viewers: ['climb_free', 'hiker_denver', 'sports_world_99']
-  }
+  },
+  {
+    id: 'story_4',
+    creatorId: 'tehran_cafe',
+    creatorName: 'Café Khatoon',
+    creatorUsername: 'cafe_khatoon_tehran',
+    creatorAvatar: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&q=80&w=200',
+    imageUrl: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&q=80&w=400',
+    text: 'First light over Tehran, fresh mint tea brewing',
+    tier: 'local',
+    views: 350,
+    viewers: ['tehran_foodie', 'persian_cafe_lover']
+  },
+  {
+    id: 'story_5',
+    creatorId: 'green_korea_kpop',
+    creatorName: 'Park Jimin',
+    creatorUsername: 'jimin_bts',
+    creatorAvatar: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=200',
+    imageUrl: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=400',
+    text: 'Practice room tonight. New choreography loading...',
+    tier: 'national',
+    views: 8900000,
+    viewers: ['army_seoul', 'bts_global', 'kpop_fan_japan']
+  },
 ];
 
 export const INDIGENOUS_PROJECTS: IndigenousProject[] = [

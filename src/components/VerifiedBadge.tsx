@@ -24,26 +24,26 @@ export const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({ tier, size = 'sm',
     local: {
       bg: 'bg-rose-500/10 text-rose-500 border-rose-500/20',
       fill: '#f43f5e',
-      label: 'Local Red Badge',
-      desc: 'Local content visible only within the contributor’s immediate town/city.'
+      label: 'Red — Local Verified',
+      desc: 'Local Red Badge: issued to verified local businesses, shops, and community figures within a single town or city.'
     },
     national: {
       bg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
       fill: '#10b981',
-      label: 'National Green Badge',
-      desc: 'National content visible to everyone in the same country.'
+      label: 'Green — National Verified',
+      desc: 'National Green Badge: issued to each country\'s nationally recognized figures, athletes, artists, and institutions.'
     },
     international: {
       bg: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
       fill: '#0ea5e9',
-      label: 'International Blue Badge',
-      desc: 'Global content visible to all accounts worldwide.'
+      label: 'Blue — International Verified',
+      desc: 'International Blue Badge: standard international verification for global brands, worldwide celebrities, and multinational entities.'
     },
     vintage: {
-      bg: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-      fill: '#f59e0b',
-      label: 'Vintage Black Badge',
-      desc: 'Exclusive vintage recognition for historical figures & cultural reference pages.'
+      bg: 'bg-neutral-500/10 text-neutral-400 border-neutral-500/20',
+      fill: '#a3a3a3',
+      label: 'Black — Legacy & Late Figures',
+      desc: 'Black Legacy Badge: reserved for historical figures, late cultural icons, and vintage personnel whose work transcends generations.'
     },
   };
 
