@@ -1,5 +1,11 @@
 {
   "name": "theplatform-top",
   "pages_build_output_dir": "dist",
-  "compatibility_date": "2026-07-21"
+  "compatibility_date": "2026-07-21",
+  "kv_namespaces": [
+    {
+      "binding": "SHARE_CHAIN",
+      "id": "bf0abc37b7d44334a2199de7245540da"
+    }
+  ]
 }

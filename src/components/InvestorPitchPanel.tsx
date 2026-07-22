@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Shield, Sparkles, AlertTriangle, TrendingUp, DollarSign, Users, Award, Percent, Globe, Copy, Check, ExternalLink, ShieldCheck, HelpCircle } from 'lucide-react';
+import { Shield, Sparkles, DollarSign, Copy, Check, ShieldCheck } from 'lucide-react';
 
 export const InvestorPitchPanel: React.FC = () => {
   // Calculator states
@@ -12,9 +12,6 @@ export const InvestorPitchPanel: React.FC = () => {
   const [backgroundStrength, setBackgroundStrength] = useState<'none_weak' | 'moderate' | 'strong'>('moderate');
   const [usesSalesAlternative, setUsesSalesAlternative] = useState(false);
   const [estimatedSubscribers, setEstimatedSubscribers] = useState(1500);
-
-  // SWOT states
-  const [activeSwotTab, setActiveSwotTab] = useState<'S' | 'W' | 'O' | 'T'>('S');
 
   // SSL-Style Website Badge Creator state
   const [badgedUrl, setBadgedUrl] = useState('https://nike-official-stock.cn');
@@ -106,133 +103,10 @@ export const InvestorPitchPanel: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div id="investor-pitch-panel-root" className="grid grid-cols-1 lg:grid-cols-12 gap-6 text-left">
+      <div id="investor-pitch-panel-root" className="space-y-6 text-left">
         
-        {/* LEFT: Complete SWOT Evaluation Carousel */}
-        <div className="lg:col-span-5 bg-[#0F0F0F] border border-white/10 rounded-2xl p-6 flex flex-col gap-4 shadow-2xl">
-          <div className="flex items-center gap-2 border-b border-white/10 pb-3">
-            <Award className="w-5 h-5 text-amber-400" />
-            <div>
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-white">
-                SWOT Disruption Matrix
-              </h4>
-              <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-wider block mt-0.5">Pitch Deck Slide #2</span>
-            </div>
-          </div>
-
-          {/* Tab Headers */}
-          <div className="grid grid-cols-4 gap-1.5 bg-black p-1 rounded-xl border border-white/5">
-            {[
-              { id: 'S', label: 'S (Strengths)', color: 'text-emerald-400' },
-              { id: 'W', label: 'W (Weaknesses)', color: 'text-rose-400' },
-              { id: 'O', label: 'O (Opportunities)', color: 'text-blue-400' },
-              { id: 'T', label: 'T (Threats)', color: 'text-amber-500' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveSwotTab(tab.id as any)}
-                id={`btn-swot-tab-${tab.id}`}
-                className={`py-2 text-[10px] font-black uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
-                  activeSwotTab === tab.id
-                    ? 'bg-zinc-800 text-white shadow-md'
-                    : 'text-zinc-500 hover:text-zinc-300'
-                }`}
-              >
-                {tab.id}
-              </button>
-            ))}
-          </div>
-
-          {/* Matrix Card */}
-          <div className="bg-black/60 border border-white/5 rounded-2xl p-5 min-h-[190px] flex flex-col justify-between">
-            {activeSwotTab === 'S' && (
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-emerald-400">
-                  <ShieldCheck className="w-4 h-4" />
-                  <h5 className="font-black text-xs uppercase font-mono tracking-widest">Inherent Strengths</h5>
-                </div>
-                <ul className="text-[11px] text-zinc-400 space-y-2 list-none pl-0 leading-relaxed font-sans">
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-emerald-400">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Zero Reliance on Ads:</strong> No personal details are harvested, building absolute confidence amidst big-tech data leaks.
-                  </li>
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-emerald-400">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Fake News Excluded:</strong> 100% verified posting guarantees that misleading rumors cannot originate on Celebgram.
-                  </li>
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-emerald-400">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Traceable Pedigree:</strong> Instant source-finding tracking code checks malicious propagation chains on the fly.
-                  </li>
-                </ul>
-              </div>
-            )}
-
-            {activeSwotTab === 'W' && (
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-rose-450">
-                  <AlertTriangle className="w-4 h-4 animate-bounce" />
-                  <h5 className="font-black text-xs uppercase font-mono tracking-widest text-rose-500">Inherent Weaknesses</h5>
-                </div>
-                <ul className="text-[11px] text-zinc-400 space-y-2 list-none pl-0 leading-relaxed font-sans">
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-rose-500">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Incentivizing Startups:</strong> Local entities without online presence must be persuaded to buy packages. We offer low-cost daily fees or commission splits.
-                  </li>
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-rose-500">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Slower Initial Post Volume:</strong> Only audited users post. However, this raises overall curation values deeply, attracting premium readers.
-                  </li>
-                </ul>
-              </div>
-            )}
-
-            {activeSwotTab === 'O' && (
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-blue-400">
-                  <TrendingUp className="w-4 h-4" />
-                  <h5 className="font-black text-xs uppercase font-mono tracking-widest text-blue-400">Strategic Opportunities</h5>
-                </div>
-                <ul className="text-[11px] text-zinc-400 space-y-2 list-none pl-0 leading-relaxed font-sans">
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-blue-400">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Trust Disruption:</strong> Only 5% of users trust old media; 85% trust local validated communities. Celebrating local pride wins.
-                  </li>
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-blue-400">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Website Badging Embeds:</strong> Verification Badges act as interactive SSL-style iframe redirects to verify physical local stores.
-                  </li>
-                </ul>
-              </div>
-            )}
-
-            {activeSwotTab === 'T' && (
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-amber-500">
-                  <AlertTriangle className="w-4 h-4" />
-                  <h5 className="font-black text-xs uppercase font-mono tracking-widest text-amber-500">Market Threats</h5>
-                </div>
-                <ul className="text-[11px] text-zinc-400 space-y-2 list-none pl-0 leading-relaxed font-sans">
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-amber-550">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Big Tech Cloning:</strong> Giants copying features. However, verification-only posting directly contradicts ad-supported models which require fake bot accounts for number padding.
-                  </li>
-                  <li className="relative pl-3.5">
-                    <span className="absolute left-0 text-amber-550">✦</span>
-                    <strong className="text-white uppercase font-bold tracking-wide text-[10px] block mb-0.5">Regulatory Barriers:</strong> Resolved via instant localized layout overrides (such as disabling interactive feeds in regulatory zones).
-                  </li>
-                </ul>
-              </div>
-            )}
-
-            <div className="text-[9px] text-zinc-650 text-right mt-3 font-mono border-t border-white/5 pt-3 uppercase tracking-wider font-bold">
-              Target Demographic anxiety: 56% worldwide users
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT: Dynamic Investor Calculator */}
-        <div className="lg:col-span-7 bg-[#0F0F0F] border border-white/10 rounded-2xl p-6 flex flex-col justify-between gap-4 shadow-2xl">
+        {/* Dynamic Investor Calculator */}
+        <div className="bg-[#0F0F0F] border border-white/10 rounded-2xl p-6 flex flex-col justify-between gap-4 shadow-2xl">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-emerald-400" />

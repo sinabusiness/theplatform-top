@@ -1,9 +1,4 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Post } from '../types';
 import { ShieldCheck, Share2, GitCommit, Copy, Check, Info } from 'lucide-react';
 
@@ -13,22 +8,42 @@ interface TracebackEngineProps {
   currentUserUsername: string;
 }
 
+const API_BASE = '/api/share-chain';
+
 export const TracebackEngine: React.FC<TracebackEngineProps> = ({
   post,
   onPostUpdated,
   currentUserUsername,
 }) => {
+  const [chain, setChain] = useState<string[]>(post.shareChain);
   const [copiedCode, setCopiedCode] = useState(false);
   const [simulationUsername, setSimulationUsername] = useState('');
   const [simMessage, setSimMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Generate current cycle code based on share chain
-  // E.g. CBG-SF-SOURDOUGH > s_bake > mission_j > reader_x
-  const generateSharingCode = (chain: string[]) => {
-    return `${post.shareCodePrefix}:[${chain.join('➔')}]`;
+  useEffect(() => {
+    loadChain();
+  }, [post.id]);
+
+  const loadChain = async () => {
+    try {
+      const res = await fetch(`${API_BASE}?id=${post.id}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.chain && data.chain.length > 0) {
+          setChain(data.chain);
+        }
+      }
+    } catch {
+      // fall back to local chain
+    }
   };
 
-  const currentCode = generateSharingCode(post.shareChain);
+  const generateSharingCode = (c: string[]) => {
+    return `${post.shareCodePrefix}:[${c.join('➔')}]`;
+  };
+
+  const currentCode = generateSharingCode(chain);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(currentCode);
@@ -36,33 +51,52 @@ export const TracebackEngine: React.FC<TracebackEngineProps> = ({
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
-  const handleSimulateShare = (e: React.FormEvent) => {
+  const handleSimulateShare = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleanUsername = simulationUsername.trim().toLowerCase().replace('@', '');
     if (!cleanUsername) return;
 
-    if (post.shareChain.includes(cleanUsername)) {
-      setSimMessage(`⚠️ Handle @${cleanUsername} already exists in this post's sharing chain.`);
-      return;
-    }
+    setLoading(true);
+    try {
+      const res = await fetch(API_BASE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId: post.id, username: cleanUsername, currentChain: chain }),
+      });
 
-    const updatedChain = [...post.shareChain, cleanUsername];
-    const updatedPost: Post = {
-      ...post,
-      shareChain: updatedChain,
-    };
+      const data = await res.json();
 
-    if (onPostUpdated) {
-      onPostUpdated(updatedPost);
-      setSimMessage(`✅ Post shared successfully! Added hop @${cleanUsername}`);
+      if (!res.ok) {
+        setSimMessage(data.error || 'Failed to add hop');
+        setLoading(false);
+        setTimeout(() => setSimMessage(''), 3000);
+        return;
+      }
+
+      const updatedChain = data.chain;
+      setChain(updatedChain);
+
+      const updatedPost: Post = {
+        ...post,
+        shareChain: updatedChain,
+      };
+
+      if (onPostUpdated) {
+        onPostUpdated(updatedPost);
+      }
+
+      setSimMessage(`Post shared! Added hop @${cleanUsername}`);
       setSimulationUsername('');
       setTimeout(() => setSimMessage(''), 3000);
+    } catch {
+      setSimMessage('Network error — try again');
+      setTimeout(() => setSimMessage(''), 3000);
     }
+    setLoading(false);
   };
 
   return (
     <div id="traceback-engine-root" className="bg-[#0F0F0F] border border-white/10 rounded-2xl p-6 flex flex-col gap-5 text-left shadow-2xl">
-      {/* Header Info */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-5 h-5 text-emerald-400" />
@@ -76,10 +110,9 @@ export const TracebackEngine: React.FC<TracebackEngineProps> = ({
       </div>
 
       <p className="text-[11px] text-zinc-400 leading-normal font-sans italic">
-        "Every theplatform.top post maintains a cryptographic metadata chain containing all transit hops. Non-verified users can share posts, but the initial source code strictly routes back to the authenticated verification entity, instantly diagnosing artificial bot swarms or wild rumors."
+        &ldquo;Every post maintains a cryptographic metadata chain containing all transit hops. Non-verified users can share posts, but the initial source code strictly routes back to the authenticated verification entity.&rdquo;
       </p>
 
-      {/* Sharing Code Display */}
       <div className="bg-black border border-white/5 rounded-2xl p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[9px] text-zinc-500 font-bold tracking-widest font-mono uppercase">CRYPTOGRAPHIC SHARING CODE:</span>
@@ -108,20 +141,18 @@ export const TracebackEngine: React.FC<TracebackEngineProps> = ({
         </div>
       </div>
 
-      {/* Visual Lineage Timeline Map */}
       <div className="flex flex-col gap-2">
         <label className="text-[9px] text-zinc-550 uppercase font-black tracking-[0.2em]">
-          Visual Lineage Hops ({post.shareChain.length} steps):
+          Visual Lineage Hops ({chain.length} steps):
         </label>
 
         <div className="space-y-4 relative pl-4 border-l border-white/10 my-2">
-          {post.shareChain.map((username, index) => {
+          {chain.map((username, index) => {
             const isFirst = index === 0;
-            const isLast = index === post.shareChain.length - 1;
+            const isLast = index === chain.length - 1;
 
             return (
               <div key={`${username}-${index}`} className="relative group">
-                {/* Node icon */}
                 <div
                   className={`absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full border-2 ${
                     isFirst
@@ -165,10 +196,9 @@ export const TracebackEngine: React.FC<TracebackEngineProps> = ({
         </div>
       </div>
 
-      {/* Share simulation for pitch showoff */}
       <form onSubmit={handleSimulateShare} className="bg-zinc-950 rounded-2xl p-4 border border-white/5 space-y-3">
         <label className="block text-[9px] text-zinc-500 font-black uppercase tracking-[0.2em]">
-          SIMULATE HOP ACTION (PRESENTATION TOOL):
+          SHARE THIS POST:
         </label>
         <div className="flex gap-2">
           <div className="relative flex-1">
@@ -184,11 +214,12 @@ export const TracebackEngine: React.FC<TracebackEngineProps> = ({
           </div>
           <button
             type="submit"
+            disabled={loading}
             id="btn-simulate-share"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold text-[10px] uppercase tracking-wider px-4 py-2.5 rounded-full flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 text-white font-bold text-[10px] uppercase tracking-wider px-4 py-2.5 rounded-full flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <Share2 className="w-3.5 h-3.5" />
-            <span>Simulate Hop</span>
+            <span>{loading ? '...' : 'Share'}</span>
           </button>
         </div>
         {simMessage && (

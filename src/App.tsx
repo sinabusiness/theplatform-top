@@ -8,6 +8,9 @@ import { Post, Story, CreatorProfile, VerificationTier } from './types';
 import { INITIAL_POSTS, INITIAL_CREATORS, INITIAL_STORIES } from './mockData';
 import { VerifiedBadge } from './components/VerifiedBadge';
 import { ExploreMap } from './components/ExploreMap';
+import { WalletAndFunding } from './components/WalletAndFunding';
+import { InvestorPitchPanel } from './components/InvestorPitchPanel';
+import { TracebackEngine } from './components/TracebackEngine';
 import { motion, AnimatePresence } from 'motion/react';
 
 import {
@@ -32,12 +35,15 @@ import {
   Sparkles,
   ExternalLink,
   MessageCircle,
-  Share2
+  Share2,
+  Wallet,
+  ShieldCheck,
+  GitCommit
 } from 'lucide-react';
 
 export default function App() {
   // Navigation active state matching IG modes
-  const [activeTab, setActiveTab] = useState<'feed' | 'explore' | 'direct' | 'profile'>('feed');
+  const [activeTab, setActiveTab] = useState<'feed' | 'explore' | 'direct' | 'wallet' | 'profile'>('feed');
   
   // Storage for posts, stories and creator lists
   const [posts, setPosts] = useState<Post[]>(INITIAL_POSTS);
@@ -118,6 +124,12 @@ export default function App() {
   const [newLocationName, setNewLocationName] = useState('Roma, Italy');
   const [newPostLat, setNewPostLat] = useState(41.9028);
   const [newPostLng, setNewPostLng] = useState(12.4964);
+
+  // Wallet balance
+  const [walletBalance, setWalletBalance] = useState(500);
+
+  // Traceback: post selected for share-chain detail view
+  const [tracebackPost, setTracebackPost] = useState<Post | null>(null);
 
   // Map Filter Area
   const [simulatedCity, setSimulatedCity] = useState('All');
@@ -256,6 +268,11 @@ export default function App() {
     alert(`✨ Post successfully published! Added to Home Feed & tagged on the interactive Explore grid.`);
   };
 
+  // Update post share chain (used by TracebackEngine)
+  const handlePostUpdated = (updatedPost: Post) => {
+    setPosts(prev => prev.map(p => p.id === updatedPost.id ? updatedPost : p));
+  };
+
   // Coordinates dropping from Google maps
   const handleMapPinDrop = (lat: number, lng: number, locationName: string) => {
     setNewPostLat(parseFloat(lat.toFixed(4)));
@@ -376,6 +393,7 @@ export default function App() {
               { id: 'feed', label: 'Home Feed', icon: Home },
               { id: 'explore', label: 'Explore & Map', icon: Compass },
               { id: 'direct', label: 'Direct Message', icon: MessageSquare, badge: '3' },
+              { id: 'wallet', label: 'Wallet', icon: Wallet },
               { id: 'profile', label: 'My Profile', icon: User },
             ].map((item) => {
               const Icon = item.icon;
@@ -631,6 +649,15 @@ export default function App() {
                                 title="Pin Point on Grid"
                               >
                                 <Share2 className="w-6 h-6" />
+                              </button>
+
+                              {/* Share Chain button */}
+                              <button
+                                onClick={() => setTracebackPost(post)}
+                                className="focus:outline-none transition-transform hover:scale-110 active:scale-95 text-neutral-200 hover:text-emerald-400 cursor-pointer"
+                                title="View Share Chain"
+                              >
+                                <GitCommit className="w-6 h-6" />
                               </button>
                             </div>
 
@@ -1018,10 +1045,43 @@ export default function App() {
                 )}
               </div>
 
+              {/* Verification & Pricing section */}
+              <div className="pt-4 border-t border-neutral-900">
+                <div className="bg-neutral-950 p-4.5 rounded-2xl border border-neutral-900 text-left space-y-2 mb-4">
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <ShieldCheck className="w-5 h-5 text-amber-400" />
+                    Verification & Pricing
+                  </h3>
+                  <p className="text-xs text-neutral-400 leading-normal">
+                    Tier-based subscription calculator and SSL-style web verification badge embed for your business.
+                  </p>
+                </div>
+                <InvestorPitchPanel />
+              </div>
+
             </div>
           )}
 
-          {/* TAB 4: MY PROFILE CARD GRID PREVIEWS */}
+          {/* TAB 4: WALLET & FUNDING */}
+          {activeTab === 'wallet' && (
+            <div className="space-y-4">
+              <div className="bg-neutral-950 p-4.5 rounded-2xl border border-neutral-900 text-left space-y-2">
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Wallet className="w-5 h-5 text-emerald-400" />
+                  Wallet & Community Funding
+                </h3>
+                <p className="text-xs text-neutral-400 leading-normal">
+                  Manage your iCurrency balance, apply referral credits, and back indigenous tech projects.
+                </p>
+              </div>
+              <WalletAndFunding
+                walletBalance={walletBalance}
+                onUpdateWallet={setWalletBalance}
+              />
+            </div>
+          )}
+
+          {/* TAB 5: MY PROFILE CARD GRID PREVIEWS */}
           {activeTab === 'profile' && (
             <div className="space-y-8 text-left">
               
@@ -1138,6 +1198,7 @@ export default function App() {
           { id: 'feed', icon: Home },
           { id: 'explore', icon: Compass },
           { id: 'direct', icon: MessageSquare },
+          { id: 'wallet', icon: Wallet },
           { id: 'profile', icon: User },
         ].map((tab) => {
           const Icon = tab.icon;
@@ -1409,6 +1470,48 @@ export default function App() {
                   Publish to feeds ➔
                 </button>
               </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* TRACEBACK ENGINE MODAL */}
+      <AnimatePresence>
+        {tracebackPost && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/85 z-55 flex items-center justify-center p-4"
+          >
+            <div className="absolute inset-0 cursor-zoom-out" onClick={() => setTracebackPost(null)} />
+            <motion.div
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-neutral-950 border border-neutral-900 rounded-2xl shadow-2xl z-10"
+            >
+              <div className="sticky top-0 bg-neutral-950 p-4 border-b border-neutral-900 flex items-center justify-between z-10">
+                <div className="flex items-center gap-2">
+                  <GitCommit className="w-5 h-5 text-emerald-400" />
+                  <span className="text-xs font-black uppercase tracking-widest text-white">
+                    Post Share Chain
+                  </span>
+                </div>
+                <button
+                  onClick={() => setTracebackPost(null)}
+                  className="text-neutral-500 hover:text-white cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-4">
+                <TracebackEngine
+                  post={tracebackPost}
+                  onPostUpdated={handlePostUpdated}
+                  currentUserUsername={currentUser.username}
+                />
+              </div>
             </motion.div>
           </motion.div>
         )}
