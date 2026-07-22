@@ -15,7 +15,7 @@ export interface CreatorProfile {
   followers: number;
   country: string;
   city: string;
-  priorityLanguage: 'en' | 'es' | 'de' | 'fa' | 'zh' | 'fr';
+  priorityLanguage: 'en' | 'es' | 'de' | 'fa' | 'zh' | 'fr' | 'it';
   bio: string;
   website?: string;
   isVintage?: boolean;

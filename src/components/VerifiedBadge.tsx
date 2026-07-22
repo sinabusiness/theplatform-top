@@ -49,39 +49,25 @@ export const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({ tier, size = 'sm',
 
   const config = colors[tier] || colors.international;
 
+  const imageSrc = {
+    local: '/red-local.png',
+    national: '/green-national.png',
+    international: '/blue-international.png',
+    vintage: '/black-legacy.png',
+  };
+
   return (
     <span
-      className={`inline-flex items-center justify-center rounded-full font-bold border select-none group relative cursor-pointer ${sizeClasses[size]} ${config.bg} ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border select-none group relative cursor-pointer overflow-hidden ${sizeClasses[size]} ${config.bg} ${className}`}
       title={`${config.label}: ${config.desc}`}
       id={`badge-${tier}-${Math.floor(Math.random() * 1000)}`}
     >
-      {tier === 'local' && (
-        <svg viewBox="0 0 24 24" className="w-[85%] h-[85%] fill-current" aria-hidden="true">
-          {/* Circular pinpoint badge */}
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-        </svg>
-      )}
-
-      {tier === 'national' && (
-        <svg viewBox="0 0 24 24" className="w-[85%] h-[85%] fill-current" aria-hidden="true">
-          {/* Shield/Castle design for stability/sovereignty */}
-          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 15l-4-4 1.41-1.41L10 13.17l5.59-5.59L17 9l-7 7z" />
-        </svg>
-      )}
-
-      {tier === 'international' && (
-        <svg viewBox="0 0 24 24" className="w-[85%] h-[85%] fill-current" aria-hidden="true">
-          {/* Standard brand/international official wavy check badge */}
-          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-        </svg>
-      )}
-
-      {tier === 'vintage' && (
-        <svg viewBox="0 0 24 24" className="w-[85%] h-[85%] fill-current" aria-hidden="true">
-          {/* Antique medallion with double laurel check */}
-          <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z M12 15.5l-3.5 1.5 1.5-4-3-2.5 3.8-.2L12 6.5l1.2 3.8 3.8.2-3 2.5 1.5 4z" />
-        </svg>
-      )}
+      <img
+        src={imageSrc[tier]}
+        alt={config.label}
+        className="w-full h-full object-cover"
+        draggable={false}
+      />
 
       {/* Hover tooltip explanation */}
       <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 hidden group-hover:block bg-slate-900 border border-slate-700 text-white text-[10px] p-2 rounded shadow-xl z-55 leading-normal text-left font-normal animate-in fade-in duration-200">
